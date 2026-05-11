@@ -9,7 +9,7 @@ from datetime import datetime
 from mcp.server.fastmcp import FastMCP
 
 # Initialize FastMCP server
-mcp = FastMCP("yle-news")
+mcp = FastMCP("yle-news", host='127.0.0.1', port=8997)
 
 # RSS feed URLs for different topics
 RSS_FEEDS = {
@@ -118,4 +118,4 @@ async def get_news(
 
 def run_server():
     """Run the MCP server."""
-    mcp.run(transport='stdio') 
+    mcp.run(transport='streamable-http')

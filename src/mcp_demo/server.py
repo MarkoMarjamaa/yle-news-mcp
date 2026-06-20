@@ -13,27 +13,71 @@ mcp = FastMCP("yle-news", host='127.0.0.1', port=8997)
 
 # RSS feed URLs for different topics
 RSS_FEEDS = {
-    "news": "https://feeds.yle.fi/uutiset/v1/majorHeadlines/YLE_UUTISET.rss",
-    "recent": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET",
-    "most_read": "https://feeds.yle.fi/uutiset/v1/mostRead/YLE_UUTISET.rss",
-    "kotimaa": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-34837",
-    "ulkomaat": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-34953",
-    "talous": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-19274",
-    "politiikka": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-38033",
-    "kulttuuri": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-150067",
-    "viihde": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-36066",
-    "tiede": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-819",
-    "luonto": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-35354",
-    "terveys": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-35138",
-    "media": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-35057",
-    "liikenne": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-12",
-    "näkökulmat": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET&concepts=18-35381",
-    "urheilu": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_URHEILU",
-    "selkouutiset": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_SELKOUUTISET",
-    "english": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_NEWS",
-    "sapmi": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_SAPMI",
-    "novosti": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_NOVOSTI",
-    "karjalakse": "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_KARJALAKSE"
+	# Pää-, tuoreimmat ja luetuimmat uutiset
+	"news": "https://yle.fi/rss/uutiset/paauutiset",
+	"recent": "https://yle.fi/rss/uutiset/tuoreimmat",
+	"most_read": "https://yle.fi/rss/uutiset/luetuimmat",
+
+	# Uutiset, urheilu ja muut sisällöt yhdessä
+	"all_content": "https://yle.fi/rss/tuoreimmat",
+
+	# Aihekohtaiset syötteet
+	"kotimaa": "https://yle.fi/rss/t/18-34837/fi",
+	"ulkomaat": "https://yle.fi/rss/t/18-34953/fi",
+	"talous": "https://yle.fi/rss/t/18-19274/fi",
+	"politiikka": "https://yle.fi/rss/t/18-38033/fi",
+	"viihde": "https://yle.fi/rss/t/18-36066/fi",
+	"kulttuuri": "https://yle.fi/rss/t/18-150067/fi",
+	"tiede": "https://yle.fi/rss/t/18-819/fi",
+	"luonto": "https://yle.fi/rss/t/18-35354/fi",
+	"terveys": "https://yle.fi/rss/t/18-35138/fi",
+	"liikenne": "https://yle.fi/rss/t/18-12/fi",
+	"kolumnit": "https://yle.fi/rss/t/18-215844/fi",  # was "näkökulmat"
+
+	# Urheilu
+	"urheilu": "https://yle.fi/rss/urheilu",
+
+	# Alueuutiset (regional news)
+	"etela-karjala": "https://yle.fi/rss/t/18-141372/fi",
+	"etela-pohjanmaa": "https://yle.fi/rss/t/18-146311/fi",
+	"etela-savo": "https://yle.fi/rss/t/18-141852/fi",
+	"kainuu": "https://yle.fi/rss/t/18-141399/fi",
+	"kanta-hame": "https://yle.fi/rss/t/18-138727/fi",
+	"keski-pohjanmaa": "https://yle.fi/rss/t/18-135629/fi",
+	"keski-suomi": "https://yle.fi/rss/t/18-148148/fi",
+	"kymenlaakso": "https://yle.fi/rss/t/18-131408/fi",
+	"lappi": "https://yle.fi/rss/t/18-139752/fi",
+	"pirkanmaa": "https://yle.fi/rss/t/18-146831/fi",
+	"pohjanmaa": "https://yle.fi/rss/t/18-148149/fi",
+	"pohjois-karjala": "https://yle.fi/rss/t/18-141936/fi",
+	"pohjois-pohjanmaa": "https://yle.fi/rss/t/18-148154/fi",
+	"pohjois-savo": "https://yle.fi/rss/t/18-141764/fi",
+	"paijat-hame": "https://yle.fi/rss/t/18-141401/fi",
+	"satakunta": "https://yle.fi/rss/t/18-139772/fi",
+	"uusimaa": "https://yle.fi/rss/t/18-147345/fi",
+	"varsinais-suomi": "https://yle.fi/rss/t/18-135507/fi",
+
+	# Selkouutiset
+	"selkouutiset": "https://yle.fi/rss/selkouutiset",
+
+	# Nyheter på svenska
+	"svenska_senaste": "https://svenska.yle.fi/rss/senaste-nytt",
+	"svenska_inrikes": "https://svenska.yle.fi/rss/inrikes",
+	"svenska_utrikes": "https://svenska.yle.fi/rss/utrikes",
+	"svenska_sport": "https://svenska.yle.fi/rss/sport",
+	"svenska_kultur": "https://svenska.yle.fi/rss/kultur",
+	"svenska_huvudstadsregionen": "https://svenska.yle.fi/rss/huvudstadsregionen",
+	"svenska_osterbotten": "https://svenska.yle.fi/rss/osterbotten",
+	"svenska_aboland": "https://svenska.yle.fi/rss/aboland",
+	"svenska_ostnyland": "https://svenska.yle.fi/rss/ostnyland",
+	"svenska_vastnyland": "https://svenska.yle.fi/rss/vastnyland",
+
+	# Other languages
+	"sapmi": "https://yle.fi/rss/sapmi",
+	"english": "https://yle.fi/rss/news",
+	"novosti": "https://yle.fi/rss/novosti",       # Russian
+	"novyny": "https://yle.fi/rss/novyny",          # Ukrainian (new)
+	"karjalakse": "https://yle.fi/rss/t/18-44136/fi",  # Karelian
 }
 
 class NewsItem(BaseModel):
